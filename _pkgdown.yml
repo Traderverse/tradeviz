@@ -1,0 +1,107 @@
+url: https://traderverse.github.io/tradeviz/
+template:
+  bootstrap: 5
+  bootswatch: flatly
+  bslib:
+    primary: "#0054a6"
+    
+home:
+  title: "tradeviz • Financial Visualization for R"
+  description: >
+    Comprehensive financial visualization suite with live streaming charts.
+    Built on ggplot2 and plotly with professional trading themes.
+
+navbar:
+  structure:
+    left: [home, reference, articles, tutorials, news]
+    right: [search, github]
+  components:
+    home:
+      icon: fas fa-home fa-lg
+      href: index.html
+    reference:
+      text: Reference
+      href: reference/index.html
+    articles:
+      text: Articles
+      menu:
+      - text: Getting Started
+        href: articles/getting-started.html
+    news:
+      text: Changelog
+      href: news/index.html
+    github:
+      icon: fab fa-github fa-lg
+      href: https://github.com/Traderverse/tradeviz
+
+reference:
+- title: "Price Charts"
+  desc: "Visualize price data"
+- contents:
+  - plot_candles
+  - plot_ohlc
+  - plot_line
+  - plot_area
+  
+- title: "Performance Charts"
+  desc: "Analyze strategy performance"
+- contents:
+  - plot_equity_curve
+  - plot_drawdown
+  - plot_returns_distribution
+  - plot_monthly_returns
+  - plot_cumulative_returns
+  
+- title: "Analysis Charts"
+  desc: "Correlation and comparative analysis"
+- contents:
+  - plot_correlation
+  - plot_heatmap
+  - plot_rolling_sharpe
+  - plot_rolling_correlation
+  - plot_performance_comparison
+  - plot_risk_return
+  
+- title: "Portfolio Charts"
+  desc: "Portfolio visualization"
+- contents:
+  - plot_allocation
+  - plot_weights
+  - plot_portfolio_performance
+  
+- title: "Dashboard Charts"
+  desc: "Multi-panel dashboards"
+- contents:
+  - plot_strategy_dashboard
+  - plot_multi_indicator
+  - plot_performance_dashboard
+  
+- title: "Live Charts"
+  desc: "Real-time streaming charts"
+- contents:
+  - plot_live_candles
+  - plot_live_line
+  - create_live_chart
+  - update_live_chart
+  
+- title: "Interactive Charts"
+  desc: "Plotly integration"
+- contents:
+  - make_interactive
+  - plot_interactive
+  
+- title: "Themes and Styling"
+  desc: "Professional trading themes"
+- contents:
+  - theme_trading
+  - theme_trading_dark
+  - scale_color_trading
+  - scale_fill_trading
+
+footer:
+  structure:
+    left: developed_by
+    right: built_with
+  components:
+    developed_by: "Developed by the Traderverse team"
+    built_with: "Built with [pkgdown](https://pkgdown.r-lib.org/)"
