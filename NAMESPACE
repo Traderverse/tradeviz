@@ -62,7 +62,7 @@ importFrom(ggplot2, ggplot, aes, geom_line, geom_point, geom_bar, geom_area,
            scale_x_date, scale_y_continuous, scale_color_manual, scale_fill_manual,
            scale_color_gradient2, scale_fill_gradient2, element_text, element_blank,
            element_line, element_rect, guides, guide_legend, coord_cartesian)
-importFrom(dplyr, mutate, group_by, summarise, filter, arrange, select, left_join, %>%)
+importFrom(dplyr, mutate, group_by, summarise, filter, arrange, select, left_join)
 importFrom(tidyr, pivot_longer, pivot_wider)
 importFrom(scales, comma, percent, dollar, date_format)
 importFrom(rlang, .data, enquo, quo_name, as_label)
@@ -70,3 +70,4 @@ importFrom(patchwork, wrap_plots, plot_layout, plot_annotation)
 importFrom(plotly, ggplotly, plot_ly, layout, add_trace, config)
 importFrom(stats, cor, na.omit, quantile, sd)
 importFrom(grDevices, colorRampPalette)
+importFrom(magrittr,'%>%')
