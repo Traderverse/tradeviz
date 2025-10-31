@@ -1,0 +1,44 @@
+Package: tradeviz
+Type: Package
+Title: Financial Visualization Suite for TradingVerse
+Version: 0.1.0
+Authors@R: 
+    person("TradingVerse", "Team", email = "info@tradingverse.org", 
+           role = c("aut", "cre"))
+Description: A comprehensive visualization package for quantitative trading and
+    investment research. Provides beautiful, publication-ready charts including
+    candlesticks, equity curves, drawdown plots, correlation heatmaps, and more.
+    Integrates seamlessly with the TradingVerse ecosystem (tradeengine, tradeio,
+    tradefeatures). Supports both static (ggplot2) and interactive (plotly)
+    visualizations with a consistent, intuitive API.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 4.1.0)
+Imports:
+    ggplot2 (>= 3.4.0),
+    tibble (>= 3.1.0),
+    dplyr (>= 1.1.0),
+    tidyr (>= 1.3.0),
+    rlang (>= 1.1.0),
+    scales (>= 1.2.0),
+    patchwork (>= 1.1.0),
+    plotly (>= 4.10.0),
+    RColorBrewer (>= 1.1.0),
+    viridis (>= 0.6.0),
+    lubridate (>= 1.9.0),
+    grid,
+    gridExtra (>= 2.3)
+Suggests: 
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown,
+    shiny (>= 1.7.0),
+    shinydashboard (>= 0.7.0),
+    DT (>= 0.20)
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+VignetteBuilder: knitr
+URL: https://github.com/tradingverse/tradeviz
+BugReports: https://github.com/tradingverse/tradeviz/issues
