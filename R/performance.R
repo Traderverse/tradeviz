@@ -28,8 +28,10 @@ plot_equity_curve <- function(data,
                               log_scale = FALSE,
                               theme_dark = FALSE) {
   
-  # Handle backtest_result objects
-  if (inherits(data, "backtest_result")) {
+  # Handle backtest_results objects (from tradeengine::backtest)
+  if (inherits(data, "backtest_results")) {
+    plot_data <- data$equity_curve
+  } else if (inherits(data, "backtest_result")) {
     plot_data <- data$equity
   } else {
     plot_data <- data
@@ -122,8 +124,10 @@ plot_drawdown <- function(data,
                          highlight_max = TRUE,
                          theme_dark = FALSE) {
   
-  # Handle backtest_result objects
-  if (inherits(data, "backtest_result")) {
+  # Handle backtest_results objects (from tradeengine::backtest)
+  if (inherits(data, "backtest_results")) {
+    plot_data <- data$equity_curve
+  } else if (inherits(data, "backtest_result")) {
     plot_data <- data$equity
   } else {
     plot_data <- data
