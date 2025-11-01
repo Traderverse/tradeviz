@@ -106,13 +106,6 @@ cor_data <- data.frame(
 plot_correlation(cor_data, title = "Asset Correlation Matrix")
 ```
 
-## Color Palettes
-
-```{r palettes, fig.height=3}
-# Show available color schemes
-scales::show_col(get_trading_palette("classic", 8))
-```
-
 ## Conclusion
 
 These examples demonstrate the core visualization capabilities of `tradeviz`. All functions support further customization through standard ggplot2 methods.
