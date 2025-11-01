@@ -2,6 +2,7 @@
 % Please edit documentation in R/tradeviz-package.R
 \docType{package}
 \name{tradeviz-package}
+\alias{tradeviz}
 \alias{tradeviz-package}
 \title{tradeviz: Financial Visualization Suite for TradingVerse}
 \description{
@@ -72,13 +73,6 @@ results |>
 
 }
 \seealso{
-Useful links:
-\itemize{
-  \item \url{https://github.com/tradingverse/tradeviz}
-  \item Report bugs at \url{https://github.com/tradingverse/tradeviz/issues}
-}
-
-
 Useful links:
 \itemize{
   \item \url{https://github.com/tradingverse/tradeviz}

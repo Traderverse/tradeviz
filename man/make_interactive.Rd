@@ -13,7 +13,7 @@ make_interactive(plot, tooltip = "all", dynamicTicks = TRUE, ...)
 
 \item{dynamicTicks}{Use dynamic ticks (default: TRUE)}
 
-\item{...Additional}{arguments passed to ggplotly}
+\item{...}{Additional arguments passed to ggplotly}
 }
 \value{
 A plotly object

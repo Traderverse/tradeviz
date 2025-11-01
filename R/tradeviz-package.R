@@ -65,8 +65,8 @@ NULL
 #'   make_interactive()
 #' }
 #'
-#' @docType package
 #' @name tradeviz-package
+#' @keywords internal
 NULL
 
 # Suppress R CMD check notes for NSE (non-standard evaluation)
@@ -82,4 +82,8 @@ utils::globalVariables(c(
 
 # Import pipe operator
 #' @importFrom magrittr %>%
+#' @importFrom rlang .data :=
+#' @importFrom stats cor sd dnorm rnorm rpois runif reorder
+#' @importFrom utils tail install.packages
+#' @importFrom grDevices colorRampPalette
 NULL

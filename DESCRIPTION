@@ -29,17 +29,24 @@ Imports:
     RColorBrewer (>= 1.1.0),
     viridis (>= 0.6.0),
     lubridate (>= 1.9.0),
-    grid,
-    gridExtra (>= 2.3)
+    zoo,
+    stats,
+    utils,
+    grDevices
 Suggests: 
     testthat (>= 3.0.0),
     knitr,
     rmarkdown,
     shiny (>= 1.7.0),
     shinydashboard (>= 0.7.0),
-    DT (>= 0.20)
+    DT (>= 0.20),
+    ggrepel,
+    tradeio,
+    tradefeatures,
+    tradeengine
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
 Remotes:
     Traderverse/tradeengine,
     Traderverse/tradeio,

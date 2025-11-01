@@ -6,7 +6,7 @@
 #' @param plot A ggplot2 object
 #' @param tooltip Tooltip variables (default: "all")
 #' @param dynamicTicks Use dynamic ticks (default: TRUE)
-#' @param ...Additional arguments passed to ggplotly
+#' @param ... Additional arguments passed to ggplotly
 #'
 #' @return A plotly object
 #' @export

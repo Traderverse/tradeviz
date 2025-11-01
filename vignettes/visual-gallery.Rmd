@@ -1,0 +1,322 @@
+---
+title: "Visual Gallery - Chart Examples"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Visual Gallery - Chart Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 8,
+  fig.height = 6,
+  dpi = 96,
+  out.width = "100%"
+)
+```
+
+```{r setup}
+library(tradeviz)
+library(dplyr)
+library(ggplot2)
+```
+
+## Introduction
+
+This vignette showcases the visualization capabilities of `tradeviz` with real examples. All charts are production-ready and customizable.
+
+## Sample Data
+
+Let's create some sample market data for demonstration:
+
+```{r sample_data}
+# Create sample OHLC data
+set.seed(123)
+n <- 100
+dates <- seq.Date(Sys.Date() - n, Sys.Date(), by = "day")
+
+# Generate synthetic prices using geometric Brownian motion
+returns <- rnorm(n, 0.0005, 0.02)
+close_prices <- 100 * cumprod(1 + returns)
+
+# Create OHLC data
+sample_data <- tibble(
+  symbol = "SAMPLE",
+  datetime = as.POSIXct(dates),
+  open = close_prices + rnorm(n, 0, 0.5),
+  high = pmax(close_prices + abs(rnorm(n, 1, 0.5)), close_prices, close_prices + rnorm(n, 0, 0.5)),
+  low = pmin(close_prices - abs(rnorm(n, 1, 0.5)), close_prices, close_prices + rnorm(n, 0, 0.5)),
+  close = close_prices,
+  volume = rpois(n, 1000000),
+  adjusted = close_prices
+)
+
+head(sample_data)
+```
+
+## Price Charts
+
+### Candlestick Chart
+
+The classic candlestick chart showing OHLC data:
+
+```{r candlestick}
+sample_data %>%
+  plot_candles(title = "Sample Stock - Candlestick Chart") +
+  theme_trading()
+```
+
+### OHLC Bar Chart
+
+Alternative bar-style representation:
+
+```{r ohlc}
+sample_data %>%
+  plot_ohlc(title = "Sample Stock - OHLC Bars") +
+  theme_trading()
+```
+
+### Line Chart
+
+Simple closing price line chart:
+
+```{r line}
+sample_data %>%
+  plot_line(y = "close", title = "Sample Stock - Closing Prices") +
+  theme_trading()
+```
+
+### Area Chart
+
+Filled area chart for cumulative metrics:
+
+```{r area}
+sample_data %>%
+  plot_area(y = "close", title = "Sample Stock - Price Area") +
+  theme_trading()
+```
+
+## Performance Visualization
+
+### Equity Curve
+
+Visualize strategy performance over time:
+
+```{r equity_curve}
+# Create sample equity curve
+equity_data <- tibble(
+  datetime = dates,
+  equity = 10000 * cumprod(1 + rnorm(n, 0.001, 0.015)),
+  benchmark = 10000 * cumprod(1 + rnorm(n, 0.0008, 0.012))
+)
+
+equity_data %>%
+  plot_equity_curve(
+    equity_col = "equity",
+    benchmark_col = "benchmark",
+    title = "Strategy vs Benchmark"
+  ) +
+  theme_trading()
+```
+
+### Drawdown Analysis
+
+Show underwater periods:
+
+```{r drawdown}
+equity_data %>%
+  plot_drawdown(
+    equity_col = "equity",
+    title = "Strategy Drawdown"
+  ) +
+  theme_trading()
+```
+
+### Returns Distribution
+
+Histogram of returns with normal overlay:
+
+```{r returns_dist}
+# Calculate returns
+returns_data <- equity_data %>%
+  mutate(returns = (equity / lag(equity) - 1)) %>%
+  filter(!is.na(returns))
+
+returns_data %>%
+  plot_returns_distribution(
+    returns_col = "returns",
+    title = "Daily Returns Distribution"
+  ) +
+  theme_trading()
+```
+
+### Monthly Returns Heatmap
+
+Calendar-style returns visualization:
+
+```{r monthly_returns}
+returns_data %>%
+  mutate(
+    year = format(datetime, "%Y"),
+    month = format(datetime, "%b")
+  ) %>%
+  plot_monthly_returns(title = "Monthly Returns Heatmap") +
+  theme_trading()
+```
+
+## Risk Analytics
+
+### Correlation Heatmap
+
+Visualize asset correlations:
+
+```{r correlation}
+# Create multi-asset returns
+set.seed(456)
+multi_asset <- tibble(
+  date = dates,
+  AAPL = rnorm(n, 0.001, 0.02),
+  GOOGL = rnorm(n, 0.001, 0.018),
+  MSFT = rnorm(n, 0.0008, 0.016),
+  AMZN = rnorm(n, 0.0012, 0.025),
+  TSLA = rnorm(n, 0.002, 0.035)
+)
+
+multi_asset %>%
+  plot_correlation(title = "Asset Correlation Matrix") +
+  theme_trading()
+```
+
+### Rolling Metrics
+
+Track risk metrics over time:
+
+```{r rolling_sharpe}
+# Calculate rolling Sharpe ratio
+window_size <- 20
+equity_data %>%
+  mutate(returns = equity / lag(equity) - 1) %>%
+  plot_rolling_sharpe(
+    returns_col = "returns",
+    window = window_size,
+    title = "Rolling 20-Day Sharpe Ratio"
+  ) +
+  theme_trading()
+```
+
+## Portfolio Analytics
+
+### Allocation Visualization
+
+Show portfolio composition:
+
+```{r allocation}
+# Sample portfolio allocation
+allocation_data <- tibble(
+  asset = c("Stocks", "Bonds", "Cash", "Commodities", "Real Estate"),
+  value = c(50000, 25000, 10000, 8000, 7000)
+)
+
+allocation_data %>%
+  plot_allocation(
+    asset_col = "asset",
+    value_col = "value",
+    title = "Portfolio Allocation"
+  ) +
+  theme_trading()
+```
+
+### Weight Evolution
+
+Track allocation changes over time:
+
+```{r weights}
+# Sample weight evolution
+weight_data <- expand.grid(
+  date = seq.Date(Sys.Date() - 365, Sys.Date(), by = "month"),
+  asset = c("Stocks", "Bonds", "Cash")
+) %>%
+  mutate(
+    weight = case_when(
+      asset == "Stocks" ~ 0.6 + rnorm(n(), 0, 0.05),
+      asset == "Bonds" ~ 0.3 + rnorm(n(), 0, 0.03),
+      asset == "Cash" ~ 0.1 + rnorm(n(), 0, 0.02)
+    )
+  )
+
+weight_data %>%
+  plot_weights(
+    date_col = "date",
+    asset_col = "asset", 
+    weight_col = "weight",
+    title = "Portfolio Weight Evolution"
+  ) +
+  theme_trading()
+```
+
+## Customization
+
+### Color Palettes
+
+`tradeviz` includes several built-in color palettes:
+
+```{r palettes, fig.height=4}
+# Show available palettes
+palette_names <- c("trading", "risk", "performance", "volatility")
+
+for (pal in palette_names) {
+  colors <- get_trading_palette(pal, n = 5)
+  plot(1:5, rep(1, 5), col = colors, pch = 19, cex = 5,
+       main = paste(pal, "palette"), xlab = "", ylab = "",
+       axes = FALSE, ylim = c(0.5, 1.5))
+}
+```
+
+### Themes
+
+Apply consistent styling across all charts:
+
+```{r themes}
+# Dark theme
+sample_data %>%
+  tail(30) %>%
+  plot_candles(title = "Dark Theme Example") +
+  theme_trading_dark()
+
+# Minimal theme  
+sample_data %>%
+  tail(30) %>%
+  plot_line(y = "close", title = "Minimal Theme Example") +
+  theme_trading_minimal()
+```
+
+## Interactive Charts
+
+Convert any static plot to interactive with `make_interactive()`:
+
+```{r interactive, eval=FALSE}
+# Create interactive candlestick chart
+sample_data %>%
+  plot_candles(title = "Interactive Candlestick") %>%
+  make_interactive()
+
+# Interactive equity curve with tooltips
+equity_data %>%
+  plot_equity_curve(equity_col = "equity") %>%
+  make_interactive(tooltip = "all")
+```
+
+## Conclusion
+
+The `tradeviz` package provides a comprehensive suite of visualization tools for quantitative trading and investment research. All charts are:
+
+- **Publication-ready** with professional styling
+- **Customizable** with themes and color palettes  
+- **Interactive** via plotly integration
+- **Consistent** API across all functions
+- **Fast** and optimized for large datasets
+
+For more examples and advanced usage, see the other vignettes and package documentation.
