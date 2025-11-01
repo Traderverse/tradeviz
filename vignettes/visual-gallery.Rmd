@@ -36,7 +36,7 @@ Let's create some sample market data for demonstration:
 # Create sample OHLC data
 set.seed(123)
 n <- 100
-dates <- seq.Date(Sys.Date() - n, Sys.Date(), by = "day")
+dates <- seq.Date(Sys.Date() - n + 1, Sys.Date(), by = "day")
 
 # Generate synthetic prices using geometric Brownian motion
 returns <- rnorm(n, 0.0005, 0.02)
