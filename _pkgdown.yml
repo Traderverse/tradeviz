@@ -37,7 +37,7 @@ navbar:
 reference:
 - title: "Price Charts"
   desc: "Visualize price data"
-- contents:
+  contents:
   - plot_candles
   - plot_ohlc
   - plot_line
@@ -45,7 +45,7 @@ reference:
   
 - title: "Performance Charts"
   desc: "Analyze strategy performance"
-- contents:
+  contents:
   - plot_equity_curve
   - plot_drawdown
   - plot_returns_distribution
@@ -54,7 +54,7 @@ reference:
   
 - title: "Analysis Charts"
   desc: "Correlation and comparative analysis"
-- contents:
+  contents:
   - plot_correlation
   - plot_heatmap
   - plot_rolling_sharpe
@@ -64,21 +64,21 @@ reference:
   
 - title: "Portfolio Charts"
   desc: "Portfolio visualization"
-- contents:
+  contents:
   - plot_allocation
   - plot_weights
   - plot_portfolio_performance
   
 - title: "Dashboard Charts"
   desc: "Multi-panel dashboards"
-- contents:
+  contents:
   - plot_strategy_dashboard
   - plot_multi_indicator
   - plot_performance_dashboard
   
 - title: "Live Charts"
   desc: "Real-time streaming charts"
-- contents:
+  contents:
   - plot_live_candles
   - plot_live_line
   - create_live_chart
@@ -86,13 +86,13 @@ reference:
   
 - title: "Interactive Charts"
   desc: "Plotly integration"
-- contents:
+  contents:
   - make_interactive
   - plot_interactive
   
 - title: "Themes and Styling"
   desc: "Professional trading themes"
-- contents:
+  contents:
   - theme_trading
   - theme_trading_dark
   - scale_color_trading
