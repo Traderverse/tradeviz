@@ -1,13 +1,4 @@
----
-title: "Visual Gallery - Chart Examples"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Visual Gallery - Chart Examples}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r, include = FALSE}
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -16,20 +7,14 @@ knitr::opts_chunk$set(
   dpi = 96,
   out.width = "100%"
 )
-```
 
-```{r setup}
+
+## ----setup--------------------------------------------------------------------
 library(tradeviz)
 library(dplyr)
-```
 
-## Introduction
 
-This vignette demonstrates key visualization functions in `tradeviz` for trading and investment analysis.
-
-## Sample Data
-
-```{r sample_data}
+## ----sample_data--------------------------------------------------------------
 # Create sample OHLC data
 set.seed(123)
 n <- 100
@@ -49,29 +34,19 @@ sample_data <- tibble(
   close = close_prices,
   volume = rpois(n, 1000000)
 )
-```
 
-## Price Charts
 
-### Candlestick Chart
-
-```{r candlestick}
+## ----candlestick--------------------------------------------------------------
 sample_data %>%
   plot_candles(title = "AAPL - Candlestick Chart", show_volume = FALSE)
-```
 
-### Line Chart
 
-```{r line_chart}
+## ----line_chart---------------------------------------------------------------
 sample_data %>%
   plot_line(title = "AAPL - Close Price")
-```
 
-## Performance Analysis
 
-### Equity Curve
-
-```{r equity_curve}
+## ----equity_curve-------------------------------------------------------------
 # Create sample equity curve
 equity_data <- tibble(
   datetime = as.POSIXct(dates),
@@ -80,20 +55,14 @@ equity_data <- tibble(
 
 equity_data %>%
   plot_equity_curve(title = "Strategy Performance", drawdown_panel = FALSE)
-```
 
-### Drawdown Chart
 
-```{r drawdown}
+## ----drawdown-----------------------------------------------------------------
 equity_data %>%
   plot_drawdown(title = "Strategy Drawdown")
-```
 
-## Risk Analytics
 
-### Correlation Heatmap
-
-```{r correlation, fig.height=6, fig.width=7}
+## ----correlation, fig.height=6, fig.width=7-----------------------------------
 # Create multi-asset returns
 set.seed(456)
 cor_data <- data.frame(
@@ -104,21 +73,9 @@ cor_data <- data.frame(
 )
 
 plot_correlation(cor_data, title = "Asset Correlation Matrix")
-```
 
-## Color Palettes
 
-```{r palettes, fig.height=3}
+## ----palettes, fig.height=3---------------------------------------------------
 # Show available color schemes
 scales::show_col(get_trading_palette("classic", 8))
-```
 
-## Conclusion
-
-These examples demonstrate the core visualization capabilities of `tradeviz`. All functions support further customization through standard ggplot2 methods.
-
-For more details, see:
-- `?plot_candles` - Price chart options
-- `?plot_equity_curve` - Performance visualization  
-- `?plot_correlation` - Risk analytics
-- `?theme_trading` - Chart styling
