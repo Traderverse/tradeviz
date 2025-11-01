@@ -40,5 +40,10 @@ Suggests:
     DT (>= 0.20)
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Remotes:
+    Traderverse/tradeengine,
+    Traderverse/tradeio,
+    Traderverse/tradefeatures,
+    Traderverse/trademetrics
 URL: https://github.com/tradingverse/tradeviz
 BugReports: https://github.com/tradingverse/tradeviz/issues
