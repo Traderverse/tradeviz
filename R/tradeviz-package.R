@@ -86,4 +86,5 @@ utils::globalVariables(c(
 #' @importFrom stats cor sd dnorm rnorm rpois runif reorder
 #' @importFrom utils tail install.packages
 #' @importFrom grDevices colorRampPalette
+#' @import patchwork
 NULL
