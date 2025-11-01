@@ -537,3 +537,4 @@ Inspired by:
 **Built with ❤️ for the TradingVerse ecosystem**
 
 *Making quantitative trading visualization accessible to everyone*
+
